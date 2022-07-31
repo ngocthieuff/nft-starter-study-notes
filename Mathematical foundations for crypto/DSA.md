@@ -10,6 +10,8 @@ DSA is a variant of the Schnorr and ElGamal signature schemes.
 `Public-Key Cryptography` is used to ***verify ownership*** on a blockchain.
 `Digital signatures` allow you to prove your knowledge of a private key corresponding to a particular address without revealing any information about it. In other words, it is mechanism to ***determine authenticity*** of a document file.
 
+> It can be said that ***reversing the encryption mechanism*** is digitally signed. In RSA, we use the public key for encryption and the private key for decryption. With digital signatures we do the opposite, use the private key to encrypt and use the public key to decrypt.
+
 <img src="/assets/images/math_and_algorithm/dsa_1.jpg" alt="Digital signature" />
 
 To **create a digital signature** you need two components, a *message*, in most cases a transaction, and the *private key*.
