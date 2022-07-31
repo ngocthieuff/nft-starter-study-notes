@@ -95,3 +95,4 @@ So let’s do a little list comprehension to see if the rule works:
 
 - [Medium-How-does-RSA-work](https://medium.com/hackernoon/how-does-rsa-work-f44918df914b)
 - [Modular-inverse](https://vnoi.info/wiki/algo/math/modular-inverse.md)
+- [Thuật toán RSA - Tính đúng đắn, Tính an toàn và Ví dụ tính toán cụ thể](https://www.youtube.com/watch?v=9KohZt8EFNc)
