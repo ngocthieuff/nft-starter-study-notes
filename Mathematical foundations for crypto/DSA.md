@@ -20,6 +20,21 @@ A **verifier** will use the *message*, the *public key*, and the *digital signat
 
 This algorithm will then produce a **binary output**: Either the signature is valid, or it is not. Every full node and miner on the network will verify every single transaction using this concept.
 
+### Cryptographic Hash function
+Cryptographic hash functions are a third type of cryptographic algorithm.
+A message of any length taken as input, and output to a short, fixed length hash. (MD5, SHA etc.)
+It is a mathematical algorithm that maps data of arbitrary size to a bit string of a fixed size (a hash) and designed to be a one-way function, that is ***infeasible to invert***. Integrity checking is the mechanism to verify if the information has not changed.
+To validate the integrity, a thumbprint (also called hash or digest) of the information created. Thumbprint created by an algorithm that create a shorter bit string from an information.
+<img src="/assets/images/math_and_algorithm/dsa_3.jpg" alt="Digital signature" />
+
+Properties:
+
+- **Non-reversibility, or one-way function**. A good hash should make it very hard to reconstruct the original password from the output or hash.
+- **Diffusion, or avalanche effect**. A change in just one bit of the original password should result in change to half the bits of its hash. In other words, when a password is changed slightly, the output of enciphered text should change significantly and unpredictably.
+- **Determinism**. A given password must always generate the same hash value or enciphered text.
+- **Collision resistance**. It should be hard to find two different passwords that hash to the same enciphered text.
+- **Non-predictable**. The hash value should not be predictable from the password.
+
 ### DSA Implementation
 
 This algorithm will cover the process from key generation to signature verification.
@@ -67,3 +82,4 @@ If `v == r`, the signature verification is successfully.
 - [Modular exponentiation algorithm](https://vnoi.info/wiki/translate/he/Number-Theory-3.md)
 - [Horizen digital signatures](https://academy.horizen.io/technology/expert/digital-signatures/)
 - [DSA Algorithm Explain](https://www.youtube.com/watch?v=ANsg4wIQFn4)
+- [Crypto Hash function](https://komodoplatform.com/en/academy/cryptographic-hash-function/#:~:text=SHA%2D256%20is%20perhaps%20the,Satoshi%20Nakamoto's%20original%20Bitcoin%20protocol.)
