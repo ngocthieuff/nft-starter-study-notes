@@ -25,6 +25,7 @@ Cryptographic hash functions are a third type of cryptographic algorithm.
 A message of any length taken as input, and output to a short, fixed length hash. (MD5, SHA etc.)
 It is a mathematical algorithm that maps data of arbitrary size to a bit string of a fixed size (a hash) and designed to be a one-way function, that is ***infeasible to invert***. Integrity checking is the mechanism to verify if the information has not changed.
 To validate the integrity, a thumbprint (also called hash or digest) of the information created. Thumbprint created by an algorithm that create a shorter bit string from an information.
+
 <img src="/assets/images/math_and_algorithm/dsa_3.jpg" alt="Digital signature" />
 
 Properties:
