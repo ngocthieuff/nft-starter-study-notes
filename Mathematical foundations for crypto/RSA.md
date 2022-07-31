@@ -38,6 +38,7 @@ eg: ``ϕ(6)=6∗(1−1/2)∗(1−1/3)=2``
 ``N = P * Q = 14``
 
 - Call $\varphi(14)$ is L, hence `L = 6`
+  > You can caculate $\varphi(14)$ by $14*(1-1/2)*(1-1/7)$ or (7-1)*(2-1)
 
 - Now we will discover how to get encryption (public) key:
 &nbsp; There are some rules for choosing public key:
