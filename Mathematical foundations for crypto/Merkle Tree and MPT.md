@@ -169,6 +169,13 @@ I will have patricia tree like this below:
 
 - **Merkle Tree**: Makes it easier to verify transactions as you only need to send the root node, and you can verify one branch at a time.
 
+<img src="/assets/images/math_and_algorithm/mpt_5.jpg" />
+A node in a Merkle Patricia trie is one of the following:
+
+``NULL (represented as the empty string)``
+``branch A 17-item node [ v0 ... v15, vt ]``
+``leaf A 2-item node [ encodedPath, value ]``
+``extension A 2-item node [ encodedPath, key ]``
 ### Reference: 
 - [Using Merkle Trees for NFT Whitelists](https://medium.com/@ItsCuzzo/using-merkle-trees-for-nft-whitelists-523b58ada3f9)
 - [Ever Wonder How Merkle Trees Work?](https://media.consensys.net/ever-wonder-how-merkle-trees-work-c2f8b7100ed3)
