@@ -138,13 +138,24 @@ PATRICIA MERKLE TREES
 
 <img src="/assets/images/math_and_algorithm/mpt_1.gif" />
 
-
 ######But wait! It seems the Merkle tree is really good, so why does Ethereum use this one too?
 
 Before we learned that you are able to send one branch at a time to dim down the computational storage, but technically this branch, as well as the whole tree still is there. You just don’t need to send it. Now, we need to compress it to save room! :)
 
+This is where the nifty Patricia tree comes in! It is a compressed trie, that cuts out the repeated data, as well as excess that isn’t needed.
 
+But how do you identify which ones to cut out?
+Well, each node that has two child nodes remains the same. But, ***if a node only has one child node, they are compressed***. This is done by combining the child node and the parent node- to make one. The formal way of calling this is “radix two.” Each parent can have two children.
 
+Let’s compare this to Genghis Khan and his infamous way of cutting down people coming into the camp when there were too many.
+
+Just like the Patricia Trie, he is getting rid of excess(don’t do this, he was really brutal, because, he was Genghis Khan)
+
+<img src="/assets/images/math_and_algorithm/mpt_2.jpeg" />
+
+His condition was that *if you are taller than the cart, you will be made “shorter”* (He killed them). This happened after he invaded a camp, and instead of looting in the raid, he halted the slaughter to kill all the soldiers first and then go for the loot. This left a lot of people to adopt into his camp, and a lot of mouths to feed. So, he compressed the civilians.
+
+The Patricia trie does the same by merging nodes. This makes sure to compress the entire tree so it's more manageable. But wait, I mentioned autocomplete, didn’t I? And besides, who determines which nodes go where?
 
 
 
@@ -154,3 +165,4 @@ Before we learned that you are able to send one branch at a time to dim down the
 - [Ever Wonder How Merkle Trees Work?](https://media.consensys.net/ever-wonder-how-merkle-trees-work-c2f8b7100ed3)
 - [Trie Wikipedia](https://en.wikipedia.org/wiki/Trie)
 - [Compressing Radix Trees Without (Too Many) Tears](https://medium.com/basecs/compressing-radix-trees-without-too-many-tears-a2e658adb9a0)
+- [Not the trees you plant in the ground; Patricia-Merkle trees](https://medium.com/@ariba.rajput.business/not-the-trees-you-plant-in-the-ground-patricia-merkle-trees-9689648c06d4)
