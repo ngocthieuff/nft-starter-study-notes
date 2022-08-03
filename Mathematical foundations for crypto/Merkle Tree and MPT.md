@@ -157,8 +157,17 @@ His condition was that *if you are taller than the cart, you will be made “sho
 
 The Patricia trie does the same by merging nodes. This makes sure to compress the entire tree so it's more manageable. But wait, I mentioned autocomplete, didn’t I? And besides, who determines which nodes go where?
 
+Like I mentioned above, each string has a bit number.
 
+<img src="/assets/images/math_and_algorithm/mpt_3.png" />
 
+I will have patricia tree like this below:
+
+<img src="/assets/images/math_and_algorithm/mpt_4.png" />
+
+- **Patricia Trie**: Cuts out repeated nodes and compresses nodes with only one child node
+
+- **Merkle Tree**: Makes it easier to verify transactions as you only need to send the root node, and you can verify one branch at a time.
 
 ### Reference: 
 - [Using Merkle Trees for NFT Whitelists](https://medium.com/@ItsCuzzo/using-merkle-trees-for-nft-whitelists-523b58ada3f9)
