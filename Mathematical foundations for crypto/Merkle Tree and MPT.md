@@ -1,8 +1,22 @@
 # Introduce Merke Tree & MPT data structures and their applications
 
-Merkle Trees have long been a facet in the fields of both cryptography and computer science well before the blockchain we know and love today ever existed.
+> In a blockchain, each transaction has an **id**.
 
-Nowadays, we are slowly starting to see them become more freequently used on-chain for the purpose of data verification.
+The transaction id is formed from various bits of information, such as the timestamp, address, info on the transaction etc.
+
+The first block in the blockchain is called the **genesis block**. The genesis block has its own hash value. As you move up the blockchain and keep on adding blocks, **each one has a hash of the other**.
+
+``Transaction Id 1 + Transaction Id 2(Transaction Id 1) + Transaction Id 3(Transaction Id 1 & Transaction Id 2).
+``
+
+
+Also known as the binary hash tree- this tree was patented by Ralph Merkle in 1979. **The tree is mainly used in distributed ledger systems to verify the contents of a block** (transaction).
+
+Think of an art gallery. The gallery has hired an art fraud detective to scan the paintings and make sure every single one of them is legitimate. Of course, there were signs and clues to help them do this, but they usually follow a process(look over the painting, feel the painting etc.) Eventually, they weed out the fake paintings and make sure the gallery is as authentic as possible.
+
+The Merkle tree as presented in bitcoins white paper, works in fundamentally the same way. **This tree makes sure each transaction is secure and verifies the transactions so the block can be put up on the blockchain**.
+
+This is why the Merkle tree is important. It is a **verification tree**, that keeps the entire blockchain and transaction process secure.
 ### Merkle Tree
 
 <img src="/assets/images/math_and_algorithm/merkle_tree_1.png" />
@@ -114,6 +128,24 @@ doge: 01100100 01101111 01100111 **0**1100101
 dogs: 01100100 01101111 01100111 011**1**0011
 <img src="/assets/images/math_and_algorithm/merkle_tree_13.jpeg" />
 <img src="/assets/images/math_and_algorithm/merkle_tree_14.jpeg" />
+
+PATRICIA MERKLE TREES
+### Patricia Merkle Trees
+
+- Sibling Node: a group of nodes with the same parent
+
+- Branch node: a node with at least one child
+
+<img src="/assets/images/math_and_algorithm/mpt_1.gif" />
+
+
+######But wait! It seems the Merkle tree is really good, so why does Ethereum use this one too?
+
+Before we learned that you are able to send one branch at a time to dim down the computational storage, but technically this branch, as well as the whole tree still is there. You just don’t need to send it. Now, we need to compress it to save room! :)
+
+
+
+
 
 
 
