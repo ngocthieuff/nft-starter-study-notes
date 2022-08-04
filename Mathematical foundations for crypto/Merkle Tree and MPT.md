@@ -165,20 +165,70 @@ I will have patricia tree like this below:
 
 <img src="/assets/images/math_and_algorithm/mpt_4.png" />
 
+- Mainly used in the ***backend*** of a block to ***verify the transaction***.
+
 - **Patricia Trie**: Cuts out repeated nodes and compresses nodes with only one child node
 
 - **Merkle Tree**: Makes it easier to verify transactions as you only need to send the root node, and you can verify one branch at a time.
 
-<img src="/assets/images/math_and_algorithm/mpt_5.jpg" />
-A node in a Merkle Patricia trie is one of the following:
+#### MPT Structure
 
-``NULL (represented as the empty string)``
-``branch A 17-item node [ v0 ... v15, vt ]``
-``leaf A 2-item node [ encodedPath, value ]``
-``extension A 2-item node [ encodedPath, key ]``
+<img src="/assets/images/math_and_algorithm/mpt_6.png" />
+
+MPT is actually a Patricia Trie which is easy to store key-value data set and has the feature of Merkle Tree.
+
+<img src="/assets/images/math_and_algorithm/mpt_5.jpg" />
+
+In MPT, there are 3 kinds of nodes: Leaf Node, Branch Node and Extension Node.
+- **Leaf node** stores the value itself or the pointer that points to the value.
+  
+- **Branch node** has function of router.
+<sub><sup>For example, the figure above has 16 characters [0…f] in total and each character is mapped to one pointer referencing to an independent child node. It’s rapid to locate the correct subtree to continue when searching for a key.</sup></sub>
+
+- **Extension node** is a space-saving router node which merges the parent node that has only one child node with its child node.
+<sub><sup>For another example, key ADGHJ is composed of 4 branch nodes and 1 leaf node, where A, D, G, H are branch nodes. However, by involving the concept of extension node we can merge ADGH into 1 extension node, plus 1 leaf node J to save space.<sup></sub>
+
+#### Application
+
+MPT is widely used in Ethereum. Transaction lists, receipt lists, state of the world and contract data are all organized by MPT. To be brief, **all key-value data are basically organized by MPT**.
+
+Taking the state of the world as an instance, it is represented as a key-value set structure. The key is account address and the value is a 4-tuple value: [nonce, balance, storageRoot, codeHash](the specific meaning of each field could refer to Ethereum yellow paper). In Ethereum, the state of the world stores status message of all accounts among the whole network for a certain moment. The status of accounts may change when transactions occur or smart contracts are running. MPT is employed to help generate new hash value with less calculation during status changing. Furthermore, account status from untrusted source can be swiftly verified as long as reliable root hash is present. In addition, MPT is essentially a Patricia Trie, so account status can be quickly searched by address. Thanks to MPT, Ethereum node is able to only store transaction list root hash, receipt list root hash, world state root hash and contract data root hash in block header, and store or transfer the detail data information and block header separately, making a lightweight node possible.
+
+In summary, MPT has unique advantages in storage of key-value data, such as search-in-ease, incremental root hash calculation as well as zero-knowledge proof support.
+
+#### Implementation
+##### A basic key-value mapping
+
+Ethereum’s Merkle Patricia Trie is essentially a **key-value mapping** that provides the following standard methods:
+
+```type Trie interface {
+  // methods as a basic key-value mapping
+  Get(key []byte) ([]byte, bool) {
+  Put(key []byte, value []byte)
+  Del(key []byte, value []byte) bool
+}
+```
+
+
+##### Verify Data Integrity
+
+> What is merkle patricia trie different from a standard mapping?
+Well, merkle patricia trie allows us to verify data integrity.
+
+One can compute the Merkle Root Hash of the trie with the Hash function, such that if any key-value pair was updated, the merkle root hash of the trie would be different; if two Tries have the idential key-value pairs, they should have the same merkle root hash.
+
+```
+type Trie interface {
+  // compute the merkle root hash for verifying data integrity
+  Hash() []byte
+}
+```
+
+Read more at [zhangchiqing/merkle-patricia-trie](https://github.com/zhangchiqing/merkle-patricia-trie)
 ### Reference: 
 - [Using Merkle Trees for NFT Whitelists](https://medium.com/@ItsCuzzo/using-merkle-trees-for-nft-whitelists-523b58ada3f9)
 - [Ever Wonder How Merkle Trees Work?](https://media.consensys.net/ever-wonder-how-merkle-trees-work-c2f8b7100ed3)
 - [Trie Wikipedia](https://en.wikipedia.org/wiki/Trie)
 - [Compressing Radix Trees Without (Too Many) Tears](https://medium.com/basecs/compressing-radix-trees-without-too-many-tears-a2e658adb9a0)
 - [Not the trees you plant in the ground; Patricia-Merkle trees](https://medium.com/@ariba.rajput.business/not-the-trees-you-plant-in-the-ground-patricia-merkle-trees-9689648c06d4)
+- [Ethereum Merkle Patricia Trie Explained](https://medium.com/@chiqing/merkle-patricia-trie-explained-ae3ac6a7e123)
