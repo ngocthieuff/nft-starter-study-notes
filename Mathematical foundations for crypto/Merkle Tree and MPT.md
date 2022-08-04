@@ -232,3 +232,4 @@ Read more at [zhangchiqing/merkle-patricia-trie](https://github.com/zhangchiqing
 - [Compressing Radix Trees Without (Too Many) Tears](https://medium.com/basecs/compressing-radix-trees-without-too-many-tears-a2e658adb9a0)
 - [Not the trees you plant in the ground; Patricia-Merkle trees](https://medium.com/@ariba.rajput.business/not-the-trees-you-plant-in-the-ground-patricia-merkle-trees-9689648c06d4)
 - [Ethereum Merkle Patricia Trie Explained](https://medium.com/@chiqing/merkle-patricia-trie-explained-ae3ac6a7e123)
+- [Vite Tech Series: A Brief Analysis of MPT and Its Application on Ethereum](https://medium.com/vitelabs/a-brief-analysis-of-mpt-and-its-application-on-ethereum-c14c3de223f5#:~:text=The%20extension%20node%20is%20a,G%2C%20H%20are%20branch%20nodes.)
