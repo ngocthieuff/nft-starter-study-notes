@@ -62,7 +62,7 @@ The deferred call's arguments are evaluated immediately, but the function call i
 Deferred function calls are ***pushed onto a stack***. 
 When a function returns, its deferred calls are executed in `last-in-first-out` order.
 
-```
+```go
 func main() {
 	fmt.Println("counting")
 
@@ -109,7 +109,7 @@ A var statement can be at package or function level. We see both in the example 
 
 If you omit the loop condition it loops forever, so an infinite loop is compactly expressed.
 
-```
+```go
 package main
 
 func main() {
@@ -119,7 +119,7 @@ func main() {
 ```
 
 ***C's while is spelled for in Go.***
-```
+```go
 package main
 
 import "fmt"
@@ -137,7 +137,7 @@ func main() {
 
 Go's if statements are like its for loops; the expression need not be surrounded by parentheses ( ) but the braces { } are required.
 
-```
+```go
 package main
 
 import (
@@ -159,7 +159,7 @@ func main() {
 
 *If with a short statement*:
 
-```
+```go
 func pow(x, n, lim float64) float64 {
 	if v := math.Pow(x, n); v < lim {
 		return v
@@ -171,7 +171,7 @@ func pow(x, n, lim float64) float64 {
 *If and else*:
 Variables declared inside an if short statement are also available inside any of the else blocks.
 
-```
+```go
 func pow(x, n, lim float64) float64 {
 	if v := math.Pow(x, n); v < lim {
 		return v
@@ -189,7 +189,7 @@ A `switch` statement is a shorter way to write a sequence of if - else statement
 
 Go's switch is like the one in C, C++, Java, JavaScript, and PHP, except that Go **only runs the selected case**, not all the cases that follow. *(In effect, the `break` statement that is needed at the end of each case in those languages is provided automatically in Go)*
 
-```
+```go
 func main() {
 	fmt.Print("Go runs on ")
 	switch os := runtime.GOOS; os {
@@ -209,7 +209,7 @@ func main() {
 Switch cases evaluate cases from top to bottom, stopping when a case succeeds.
 <sub>For example:</sub>
 
-```
+```go
 switch i {
 case 0:
 case f():
@@ -221,7 +221,7 @@ does not call f if i==0.
 **Switch with no condition:**
 Switch without a condition is the same as `switch true`.
 <sub>This construct can be a clean way to write long if-then-else chains.</sub>
-```
+```go
 func main() {
 	t := time.Now()
 	switch {
