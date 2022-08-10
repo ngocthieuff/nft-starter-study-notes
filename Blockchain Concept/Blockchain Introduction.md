@@ -42,6 +42,15 @@ The ledger is the main record holder which holds the list of the block.
 
 <img src="/assets/images/blockchain_concept/blc_security.png">
 
+### Feature of blockchain:
+
+<img src="/assets/images/blockchain_concept/blc.jpg">
+
+### Blockchain application:
+
 ### References:
 
 - [What Is Blockchain? Simplest Introduction To The Blockchain](https://medium.com/mindorks/what-is-blockchain-simplest-introduction-to-the-blockchain-764a468e1575)
+- [How blockchain works?](https://kilroyblockchain.com/what-is-blockchain)
+- [Features of Blockchain](https://www.geeksforgeeks.org/features-of-blockchain/)
+- [Blockchain Applications: What Is Blockchain Used For?](https://www.softwaretestinghelp.com/blockchain-application-examples/)
