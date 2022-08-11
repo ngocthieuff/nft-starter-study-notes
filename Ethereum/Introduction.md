@@ -51,5 +51,61 @@ As well as creating ether through block rewards, ether can **get destroyed** by 
 | Wei          | 10^-18         | Technical implementations |
 | Gwei         | 10^-9          | Human-readable gas fees   |
 
+### What is a Smart Contract?
+
+A "smart contract" is simply a program that runs on the Ethereum blockchain.
+ 
+<p style="font-size: 20px; color: gray">Smart Contract = Code (function) + Data (state)
+<span style="font-size: 17px; color: gray">resides at address on Ethereum blockchain</span></p>
+
+Smart contracts are a type of <ins>Ethereum account</ins>. This means they have a balance and they can send transactions over the network. 
+However they're not controlled by a user, instead they are deployed to the network and run as programmed.
+
+User accounts can then interact with a smart contract by submitting transactions that *execute a function* defined on the smart contract. 
+Smart contracts can define rules, like a regular contract, and automatically enforce them via the code. Smart contracts cannot be deleted by default, and interactions with them are irreversible.
+
+#### A digital vending machine:
+
+To get a snack from a vending machine:
+
+```solidity
+money + snack selection = snack dispensed
+```
+
+A smart contract, like a vending machine, has logic programmed into it.
+
+```solidity
+pragma solidity 0.8.7;
+
+contract VendingMachine {
+
+    // Declare state variables of the contract
+    address public owner;
+    mapping (address => uint) public cupcakeBalances;
+
+    // When 'VendingMachine' contract is deployed:
+    // 1. set the deploying address as the owner of the contract
+    // 2. set the deployed smart contract's cupcake balance to 100
+    constructor() {
+        owner = msg.sender;
+        cupcakeBalances[address(this)] = 100;
+    }
+
+    // Allow the owner to increase the smart contract's cupcake balance
+    function refill(uint amount) public {
+        require(msg.sender == owner, "Only the owner can refill.");
+        cupcakeBalances[address(this)] += amount;
+    }
+
+    // Allow anyone to purchase cupcakes
+    function purchase(uint amount) public payable {
+        require(msg.value >= amount * 1 ether, "You must pay at least 1 ETH per cupcake");
+        require(cupcakeBalances[address(this)] >= amount, "Not enough cupcakes in stock to complete this purchase");
+        cupcakeBalances[address(this)] -= amount;
+        cupcakeBalances[msg.sender] += amount;
+    }
+}
+```
+
 ### References:
 - [Intro to Ethereum](https://ethereum.org/en/developers/docs/intro-to-ethereum/)
