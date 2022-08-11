@@ -33,5 +33,23 @@ The ether cryptocurrency supports a pricing mechanism for Ethereum's computing p
 
 Therefore, even if a malicious dapp submitted an infinite loop, the transaction would eventually run out of ether and terminate, allowing the network to return to normal.
 
+#### Minting Ether:
+
+Minting is the process in which new ether gets created on the Ethereum ledger.
+<sub>The underlying Ethereum protocol creates the new ether, and it is not possible for a user to create ether.</sub>
+
+Ether is minted when a new block is created on the Ethereum blockchain.
+
+#### Burning Ether:
+
+As well as creating ether through block rewards, ether can **get destroyed** by a process called 'burning'. When ether gets burned, it gets *removed from circulation permanently*.
+
+#### Denominations:
+
+| Denomination | Value in ether | Common Usage              |
+|--------------|----------------|---------------------------|
+| Wei          | 10^-18         | Technical implementations |
+| Gwei         | 10^-9          | Human-readable gas fees   |
+
 ### References:
 - [Intro to Ethereum](https://ethereum.org/en/developers/docs/intro-to-ethereum/)
