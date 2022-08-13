@@ -107,5 +107,19 @@ contract VendingMachine {
 }
 ```
 
+### Let's come to DAPPs:
+
+A **d**ecentralized **app**lication (dapp) is an application built on a decentralized network that combines a smart contract and a frontend user interface. 
+
+<p style="font-size: 20px; color: gray">Dapp = Smart Contract + Frontend UI
+
+<sub>As mentioned in the previous section, on Ethereum, smart contracts are accessible and transparent – like open APIs – so your dapp can even include a smart contract that someone else has written.</sub>
+
+- **Decentralized** - dapps operate on Ethereum, an open public decentralized platform where no one person or group has control
+- **Deterministic** - dapps perform the same function irrespective of the environment in which they get executed
+- **Turing complete** - dapps can perform any action given the required resources
+- **Isolated** - dapps are executed in a virtual environment known as Ethereum Virtual Machine so that if the smart contract has a bug, it won’t hamper the normal functioning of the blockchain network
+
+
 ### References:
 - [Intro to Ethereum](https://ethereum.org/en/developers/docs/intro-to-ethereum/)
