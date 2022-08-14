@@ -36,3 +36,5 @@ A *commit log* (also referred to as write-ahead log or a transaction log) is a p
 
 - [Medium: A Thorough Introduction to Apache Kafka](https://betterprogramming.pub/thorough-introduction-to-apache-kafka-6fbf2989bbc1)
 - [Udemy: Apache Kafka Series - for Beginners v3](https://www.udemy.com/course/apache-kafka/learn/lecture/11566872#reviews)
+- [Implementing a Kafka Producer and Consumer In Golang (With Full Examples) For Production](https://www.sohamkamani.com/golang/working-with-kafka/)
+- [How to use Kafka with Go](https://www.educative.io/answers/how-to-use-kafka-with-go)
