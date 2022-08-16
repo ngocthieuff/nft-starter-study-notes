@@ -1,5 +1,6 @@
 // Run by
-// go run sequential_consume.go
+// go run main.go
+// Reference: https://www.sohamkamani.com/golang/working-with-kafka/#creating-the-kafka-consumer
 package main
 
 import (
