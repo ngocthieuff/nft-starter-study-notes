@@ -11,6 +11,7 @@ kafka-console-producer.sh --bootstrap-server localhost:9092 --topic first_topic
 
 # consuming from beginning
 kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic first_topic --from-beginning
+kafka-console-consumer.sh --bootstrap-server 34.142.253.26:9092 --topic topic-A --from-beginning
 
 # display key, values and timestamp in consumer
 kafka-console-consumer --bootstrap-server localhost:9092 --topic first_topic --formatter kafka.tools.DefaultMessageFormatter --property print.timestamp=true --property print.key=true --property print.value=true --from-beginning

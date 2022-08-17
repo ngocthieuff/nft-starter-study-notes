@@ -10,6 +10,11 @@ kafka-console-producer.sh --bootstrap-server localhost:9092 --topic first_topic
 >I love Kafka
 >^C  (<- Ctrl + C is used to exit the producer)
 
+# producing with key and value
+
+kafka-console-producer.sh --broker-list 34.142.253.26:9092 --topic topic-B --property parse.key=true 
+--property key.separator=:
+kafka-console-producer.sh --broker-list 34.142.253.26:9092 --topic topic-B --property "parse.key=true" --property "key.separator=:"
 
 # producing with properties
 kafka-console-producer.sh --bootstrap-server localhost:9092 --topic first_topic --producer-property acks=all
@@ -21,6 +26,7 @@ kafka-console-producer.sh --bootstrap-server localhost:9092 --topic first_topic 
 # producing to a non existing topic
 kafka-console-producer.sh --bootstrap-server localhost:9092 --topic new_topic
 > hello world!
+kafka-console-producer.sh --bootstrap-server 34.142.253.26:9092 --topic topic-B
 
 # our new topic only has 1 partition
 kafka-topics.sh --bootstrap-server localhost:9092 --list

@@ -4,6 +4,7 @@
 kafka-topics.sh 
 
 kafka-topics.sh --bootstrap-server localhost:9092 --list 
+kafka-topics.sh --bootstrap-server 34.142.253.26:9092 --list 
 
 kafka-topics.sh --bootstrap-server localhost:9092 --topic first_topic --create
 
