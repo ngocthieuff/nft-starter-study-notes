@@ -2,8 +2,10 @@
     "cSpell.words": [
         "horizontalverticalscalability",
         "kubernetes",
+        "librdkafka",
         "Rebalance",
         "Rebalancing",
+        "sarama",
         "segmentio",
         "Stackoverflow",
         "Udemy",
