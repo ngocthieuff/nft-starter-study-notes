@@ -99,7 +99,37 @@ In this example, a Consumer inserts a row containing messageId into the `PROCESS
 6. Delivering with an “at least once” strategy supposes that the developer should have a deal with the duplicate message.
 7. Duplicate messages may be handled in several ways: implement an idempotent message handler or tracking all received messages and discard duplicate ones.
 
+<p style="color: gray; font-size: 22px;">Apache Kafka Rebalance Protocol - the magic behind your streams applications<p>
+
+<p style="font-size: 19px; font-weight: 600;">Kafka & The Rebalanced Protocol 101<p>
+
+**Let’s go back to some basics** ^^
+
+Apache Kafka is a streaming platform based on a `distributed publish/subscribe pattern`. 
+<sub>First, processes called **producers** send messages into **topics**, which are managed and stored by a cluster of **brokers**. Then, processes called **consumers** subscribe to these topics for fetching and processing published messages.</sub>
+
+<sub>A **topic** is distributed across a number of brokers so that each broker manages **`subsets of messages`** for each **topic** - these subsets are called **partitions**. The number of **partitions** is defined when a topic is created and can be increased over time (but be careful with that operation).</sub>
+
+<br/>
+
+What is important to understand is that a partition is actually the **`unit of parallelism`** for Kafka’s producers and consumers.
+
+<span style="background-color: pink">On the producer side, the partitions allow writing messages in parallel</span>. 
+<sub>If a message is published with a key, then, by default, the producer will hash the given key to determine the destination partition. This provides a guarantee that all messages with the same key will be sent to the same partition. In addition, a consumer will have the guarantee of getting messages delivered in order for that partition.</sub>
+
+<span style="background-color: pink">On the consumer side, the number of partitions for a topic bounds the maximum number of active consumers within a consumer group.</span>
+<sub>A consumer group is the mechanism provided by Kafka to group multiple consumer clients, into one logical group, in order to load balance the consumption of partitions. Kafka provides the guarantee that a <span style="background-color: #C2FFD6; font-weight: bold;">topic-partition is assigned to only one consumer within a group<span>.</sub>
+
+<img src="/assets/images/kafka/partition_is_assigned_to_only_one_consumer_within_a_group.jpeg" alt="topic-partition is assigned to only one consumer within a group" />
+<p style="color: grey; font-size: 14px; padding-left: 20px;">topic-partition is assigned to only one consumer within a group</p>
+
+If a consumer leaves the group after a controlled shutdown or crashes then all its partitions will be reassigned automatically among other consumers. In the same way, if a consumer (re)join an existing group then all partitions will be also ***rebalanced between the group members***.
+
+The ability of consumers clients to cooperate within a dynamic group is made possible by the use of the so-called Kafka Rebalance Protocol.
+
+
 
 ### References:
 
 - [How to Handle Duplicate Messages and Message Ordering in Kafka](https://betterprogramming.pub/how-to-handle-duplicate-messages-and-message-ordering-in-kafka-82e2fef82025)
+- [Apache Kafka Rebalance Protocol, or the magic behind your streams applications](https://medium.com/streamthoughts/apache-kafka-rebalance-protocol-or-the-magic-behind-your-streams-applications-e94baf68e4f2)
