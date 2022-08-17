@@ -123,9 +123,55 @@ What is important to understand is that a partition is actually the **`unit of p
 <img src="/assets/images/kafka/partition_is_assigned_to_only_one_consumer_within_a_group.jpeg" alt="topic-partition is assigned to only one consumer within a group" />
 <p style="color: grey; font-size: 14px; padding-left: 20px;">topic-partition is assigned to only one consumer within a group</p>
 
-If a consumer leaves the group after a controlled shutdown or crashes then all its partitions will be reassigned automatically among other consumers. In the same way, if a consumer (re)join an existing group then all partitions will be also ***rebalanced between the group members***.
+<p style="background-color: #C8EFFF">If a consumer leaves the group after a controlled shutdown or crashes then all its partitions will be reassigned automatically among other consumers. In the same way, if a consumer (re)join an existing group then all partitions will be also <span style="font-weight: bold;">rebalanced between the group members</span>.</p>
 
-The ability of consumers clients to cooperate within a dynamic group is made possible by the use of the so-called Kafka Rebalance Protocol.
+The ability of consumers clients to cooperate within a dynamic group is made possible by the use of the so-called **Kafka Rebalance Protocol**.
+
+**The Rebalance Protocol, in a Nutshell** :ok_woman:
+
+First, let’s give a definition of the meaning of the term “rebalance” in the context of Apache Kafka.
+
+>**Rebalance/Rebalancing**: the procedure that is followed by a number of distributed processes that use Kafka clients and/or the Kafka coordinator to **form a common group** and **distribute a set of resources** among the members of the group (source : Incremental Cooperative Rebalancing: Support and Policies).
+
+This definition above actually makes no reference to the notion of **consumers** or **partitions**. Instead, it uses a concept of **members** and **resources**. <span style="background-color: pink">The main reason for that is because the rebalance protocol is not only limited to manage consumers but can also be used to coordinate any group of processes.</span>
+
+<br/>
+
+Here are some usages of the protocol rebalance :
+
+- **Confluent Schema Registry** relies on rebalancing to elect a leader node.
+- **Kafka Connect** uses it to distribute tasks and connectors among the workers.
+- **Kafka Streams** uses it to assign tasks and partitions to the application streams instances.
+
+<img src="/assets/images/kafka/Apache%20Kafka%20Rebalance%20Protocol%20and%20components.jpeg"/>
+
+In addition, what is really important to understand is that rebalance mechanism is actually structured around two protocols : **Group Membership Protocol** and **Client Embedded Protocol**.
+
+The Group Membership Protocol, as its name suggests, this protocol is in charge of the <span style="background-color: #C2FFD6; font-weight: bold;">coordination of members within a group</span>. The clients participating in a group will execute a sequence of requests/responses with a Kafka broker that acts as **coordinator**.
+
+The second protocol is executed on the client side and allows extending the first the first one by being embedded in it. For example, the protocol used by consumers will assign topic-partition to members.
+
+Now that we have a better understanding of what the rebalance protocol is, let’s illustrate its implementation for assigning partitions in a consumer group.
+
+**Join Group:**:boom:
+
+When a consumer starts, it sends a first `FindCoordinator` request to obtain the Kafka `broker coordinator` which is responsible for its group. Then, it initiates the rebalance protocol by sending a JoinGroup request.
+
+<img src="/assets/images/kafka/join group request.jpeg" alt="Consumer — Rebalance Protocol — SyncGroup Request"/>
+
+As we can see, the `JoinGroup` contains some consumer client configuration such as the `session.timeout.ms` and the `max.poll.interval.ms`. These properties are used by <span style="background-color: #C2FFD6; font-weight: bold;">the coordinator to kick members out of the group if they don’t respond</span>. :scream_cat:
+
+In addition, the request also contains two very important fields: the list of client protocols, supported by the members, and metadata that will be used for executing one of the embedded client protocols. In our case, the client-protocols are the list of partition assignors configured for the consumer (i.e : `partition.assignment.strategy`). Metadata contains the list of topics the consumer has subscribed to.
+
+!!! Notes: More details about consumer configs is in: [Kafka official documentation](https://kafka.apache.org/documentation/#consumerconfigs) 
+!!! Notes: More details about assignor is in: [Understanding Kafka partition assignment strategies and how to write your own custom assignor](https://medium.com/streamthoughts/understanding-kafka-partition-assignment-strategies-and-how-to-write-your-own-custom-assignor-ebeda1fc06f3)
+
+
+The `JoinGroup` acts as a barrier, meaning that the coordinator doesn’t send responses as long as all consumer requests are not received (i.e group.initial.rebalance.delay.ms) or rebalance timeout is reached.
+
+<img src="/assets/images/kafka/join group response.jpeg" alt="Consumer — Rebalance Protocol — JoinGroup Response"/>
+
+!!! Notes: The first consumer, within the group, receives the list of active members and the selected assignment strategy and acts as the **group leader** :crown: while others receive an empty response. The group leader is responsible for executing the partitions assignments locally.
 
 
 
