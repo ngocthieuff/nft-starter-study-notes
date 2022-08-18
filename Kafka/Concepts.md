@@ -30,6 +30,13 @@ It’s worth noting that ***fault tolerance is at a direct trade-off with perfor
 
 A *commit log* (also referred to as write-ahead log or a transaction log) is a persistent-ordered data structure that only supports appends. You can’t modify or delete records from it. It’s read from left to right and guarantees item ordering.
 
+### Data Distribution and Replication
+#### Data replication
+
+Partition data is replicated across multiple brokers in order to preserve the data in case one broker dies.
+
+<img src="/assets/images/kafka/data_replication.jpg" />
+
 
 
 ### References:

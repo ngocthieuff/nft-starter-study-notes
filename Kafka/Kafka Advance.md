@@ -173,9 +173,12 @@ The `JoinGroup` acts as a barrier, meaning that the coordinator doesn’t send r
 
 !!! Notes: The first consumer, within the group, receives the list of active members and the selected assignment strategy and acts as the **group leader** :crown: while others receive an empty response. The group leader is responsible for executing the partitions assignments locally.
 
+### Partition Assignment Strategies:
 
+<img src="/assets/images/kafka/partition_strategy.jpg"/>
 
 ### References:
 
 - [How to Handle Duplicate Messages and Message Ordering in Kafka](https://betterprogramming.pub/how-to-handle-duplicate-messages-and-message-ordering-in-kafka-82e2fef82025)
 - [Apache Kafka Rebalance Protocol, or the magic behind your streams applications](https://medium.com/streamthoughts/apache-kafka-rebalance-protocol-or-the-magic-behind-your-streams-applications-e94baf68e4f2)
+- [Rebalance & Partition Assignment Strategies in Kafka](https://medium.com/trendyol-tech/rebalance-and-partition-assignment-strategies-for-kafka-consumers-f50573e49609)
