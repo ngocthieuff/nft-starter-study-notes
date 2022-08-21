@@ -1,8 +1,10 @@
 {
     "cSpell.words": [
+        "goroutines",
         "horizontalverticalscalability",
         "kubernetes",
         "librdkafka",
+        "println",
         "Rebalance",
         "Rebalancing",
         "sarama",

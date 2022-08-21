@@ -45,3 +45,4 @@ Partition data is replicated across multiple brokers in order to preserve the da
 - [Udemy: Apache Kafka Series - for Beginners v3](https://www.udemy.com/course/apache-kafka/learn/lecture/11566872#reviews)
 - [Implementing a Kafka Producer and Consumer In Golang (With Full Examples) For Production](https://www.sohamkamani.com/golang/working-with-kafka/)
 - [How to use Kafka with Go](https://www.educative.io/answers/how-to-use-kafka-with-go)
+- [Understanding Kafka Topic Partitions](https://medium.com/event-driven-utopia/understanding-kafka-topic-partitions-ae40f80552e8#:~:text=Kafka's%20topics%20are%20divided%20into,in%20an%20append%2Donly%20fashion.)
