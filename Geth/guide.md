@@ -31,10 +31,11 @@
    mkdir node2
    ```
    - Create new account
+  
    ```console
    cd node1
    geth --datadir "./data" account new
    ```
    <img src="/assets/images/geth/pvtnetwork_create_new_account.png" />
-
+    
     Do same steps with node2 folder
