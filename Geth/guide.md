@@ -1,4 +1,5 @@
-1. Install Chrome - Arch Linux
+**1. Install Chrome - Arch Linux**
+
 ```console
     sudo pacman -Sy
 
@@ -22,3 +23,18 @@
 
     sudo pacman -U google-chrome-104.0.5112.101-1-x86_64.pkg.tar.zst
 ```
+**2. Install Metamask is same as above**
+**3. Create nodes:**
+   - Create two folders:
+   ```console
+   mkdir node1
+   mkdir node2
+   ```
+   - Create new account
+   ```console
+   cd node1
+   geth --datadir "./data" account new
+   ```
+   <img src="/assets/images/geth/pvtnetwork_create_new_account.png" />
+
+    Do same steps with node2 folder
