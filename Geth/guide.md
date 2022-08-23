@@ -1,4 +1,4 @@
-**1. Install Chrome - Arch Linux**
+**1. Install Chrome - Arch Linux** :sparkling_heart:
 
 ```console
     sudo pacman -Sy
@@ -27,15 +27,27 @@
 **3. Create nodes:**
    - Create two folders:
    ```console
-   mkdir node1
-   mkdir node2
+    mkdir node1
+    mkdir node2
    ```
    - Create new account
   
    ```console
-   cd node1
-   geth --datadir "./data" account new
+    cd node1
+    geth --datadir "./data" account new
    ```
+
    <img src="/assets/images/geth/pvtnetwork_create_new_account.png" />
     
     Do same steps with node2 folder
+
+**4. Setup genesis block:**
+
+   ```console
+    puppeth
+   ```
+   <img src="/assets/images/geth/puppeth.png" />
+
+   :golf: For export blockpoa.json:
+
+   <img src="/assets/images/geth/blockpoajson.png" />
