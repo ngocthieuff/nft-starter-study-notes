@@ -49,10 +49,12 @@ When reading data, the set of SST files to access is retrieved from the data in 
 
 All operations performed on the SST, log and `MANIFEST` files are logged in the `LOG` file.
 
-### Understanding the LevelDB LOG entries
+### How does it work?
 
+<img src="/assets/images/levelDB/howdoesitwork.jpg" />
 
 
 ### References:
 
 - [Demystifying LevelDB](https://blog.senx.io/demystifying-leveldb/)
+- [How does LevelDB work?](https://www.quora.com/How-does-LevelDB-workgo)
