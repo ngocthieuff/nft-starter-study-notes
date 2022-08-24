@@ -49,9 +49,9 @@ The genesis block is configured using a `genesis.json` file whose path must be p
 
 When creating a genesis block, a few initial parameters for the private blockchain must be defined:
 
-- `config`: Ethereum platform features enabled at launch<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Enabling and disabling features once the blockchain is running requires scheduling a hard fork.
+- `config`: Ethereum platform features enabled at launch<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<sub>Enabling and disabling features once the blockchain is running requires scheduling a hard fork.</sub>
 
-- `gasLimit`: Initial block gas limit<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This impacts how much EVM computation can happen within a single block. <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The block gas limit can be adjusted after launch using the `--miner.gastarget` command-line flag.
+- `gasLimit`: Initial block gas limit<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<sub>This impacts how much EVM computation can happen within a single block. <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The block gas limit can be adjusted after launch using the `--miner.gastarget` command-line flag.</sub>
 
 - `alloc`: Initial allocation of ether<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<sub>This determines how much ether is available to the addresses listed in the genesis block. Additional ether can be created through mining as the chain progresses.</sub>
 
