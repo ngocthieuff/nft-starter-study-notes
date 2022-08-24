@@ -53,7 +53,18 @@ All operations performed on the SST, log and `MANIFEST` files are logged in the 
 
 <img src="/assets/images/levelDB/howdoesitwork.jpg" />
 
+The idea is to do much work in memory and **write new/modified data as new files** (not modifying existing disk data) in batches (doing only sequential reading and writing).
 
+In more detail: 
+- There are many 2Mb files each containing sorted by key key-value pairs. 
+- These files logically divided into 7 levels each 10 times larger than the previous. 
+- Level_0 is data in memory. 
+- So for example `level1` may consist of 3 files: file1_l1 contains keys in the range 50-70, file2_l1 90-110, file3_l1 200-250; `level2` consists of 30 files containing keys file1_l2 30-60, file2_l2 110-210 and so on. 
+- All data modification that arrive happen in level_0 (ram) and then when it's full are merged with level_1. 
+- To merge, all files that have overlapping key-ranges from level_1 with level_0 are read into memory, data is merged (deletes are just marks) and the new files are written to level_1. 
+- Then once in a while similar thing happens with level_1 and level_2 (updates travel from level_i to level_i+1 in background processes). 
+- <span style="background-color: #C2FFD6">So when iterating (or looking for keys) younger levels are consulted first since they may contain fresher changes.</span>
+- The need for 7 layers (and not just 2) comes from the fact that bigger difference in sizes between level i and level i+1 the more data we need to read/write while merging them (if level i+1 much larger than i then the keys from i may belong to many files in i+1 and this needs to be small to fit in memory).
 ### References:
 
 - [Demystifying LevelDB](https://blog.senx.io/demystifying-leveldb/)
