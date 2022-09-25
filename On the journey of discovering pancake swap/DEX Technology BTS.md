@@ -30,3 +30,4 @@ where:
 [2] - [Liquidity pool](https://capital.com/liquidity-pool-definition)
 [3] - [What is an Automated Market Maker? (Liquidity Pool Algorithm)](https://www.youtube.com/watch?v=1PbZMudPP5E)
 [4] - [Binance What Is an Automated Market Maker (AMM)?](https://academy.binance.com/en/articles/what-is-an-automated-market-maker-amm)
+[5] - [Impermanent Loss? Hiểu rõ về “Tổn thất tạm thời” khi cung cấp thanh khoản cho các AMM](https://cryptogo.net/impermanent-loss-hieu-ro-ve-ton-that-tam-thoi-khi-cung-cap-thanh-khoan-cho-cac-amm/#:~:text=Loss%20l%C3%A0%20g%C3%AC%3F-,Impermanent%20Loss%20hay%20t%E1%BB%95n%20th%E1%BA%A5t%20t%E1%BA%A1m%20th%E1%BB%9Di%20ngh%C4%A9a%20l%C3%A0%20s%E1%BB%B1,th%E1%BB%8B%20tr%C6%B0%E1%BB%9Dng%20bi%E1%BA%BFn%20%C4%91%E1%BB%99ng%20m%E1%BA%A1nh.)
