@@ -77,6 +77,10 @@ export const useFetchPairPrices = ({
 
 <img src="/assets/images/dex/pc_chart_hover.png" />
 
+**1. On hovering:**
+
+in whole ``BasicChart`` component:
+
 ```typescript
         <SwapLineChart
           data={pairPrices}
@@ -168,4 +172,49 @@ const HoverUpdater = ({ locale, payload, setHoverValue, setHoverDate }) => {
       </AreaChart>
     </ResponsiveContainer>
 
+```
+
+2. On updating new pair price:
+   
+Component for rendering:
+```typescript
+          <PairPriceDisplay
+            value={pairPrices?.length > 0 && valueToDisplay}
+            inputSymbol={inputCurrency?.symbol}
+            outputSymbol={outputCurrency?.symbol}
+          >
+            <Text color={isChangePositive ? 'success' : 'failure'} fontSize="20px" ml="4px" bold>
+              {`${isChangePositive ? '+' : ''}${changeValue.toFixed(3)} (${changePercentage}%)`}
+            </Text>
+          </PairPriceDisplay>
+```
+
+where to get data for displaying:
+
+```typescript
+  const { pairPrices = [], pairId } = useFetchPairPrices({
+    token0Address,
+    token1Address,
+    timeWindow,
+    currentSwapPrice,
+  })
+```
+
+dive into ``useFetchPairPrices``:
+
+```typescript
+
+```
+
+
+
+**Render color by positive/negative changes:**
+
+```typescript
+  const { changePercentage, changeValue } = getTimeWindowChange(pairPrices)
+  const isChangePositive = changeValue >= 0
+
+    <Text color={isChangePositive ? 'success' : 'failure'} fontSize="20px" ml="4px" bold>
+        {`${isChangePositive ? '+' : ''}${changeValue.toFixed(3)} (${changePercentage}%)`}
+    </Text>
 ```
