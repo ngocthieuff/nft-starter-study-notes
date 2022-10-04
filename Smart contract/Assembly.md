@@ -188,6 +188,62 @@ assembly {
 }
 ```
 
+#### If:
+
+Curly braces for the body of the `if` statement are required.
+
+However, there is **no `else` part**.
+
+```solidity
+assembly {
+    if slt(x, 0) { x := sub(0, x) }  // Ok
+            
+    if eq(value, 0) revert(0, 0)    // Error, curly braces needed
+}
+```
+
+#### Switch:
+
+```solidity
+assembly {
+    let x := 0
+    switch calldataload(4)
+    case 0 {
+        x := calldataload(0x24)
+    }
+    default {
+        x := calldataload(0x44)
+    }
+    sstore(0, div(x, 2))
+}
+```
+
+Rules:
+- The body of a case does require curly braces.
+- All `case` value: same type, distinct values.
+
+!!! Notes: If all possible values of the expression type are covered, a default case is not allowed.
+
+```solidity
+assembly {
+             
+    let x := 34
+             
+    switch lt(x, 30)
+    case true {
+        // do something
+    }
+    case false {
+        // do something els
+    }
+    default {
+        // this is not allowed
+    }
+             
+}
+```
+
+
 ### References:
 - [1] https://jeancvllr.medium.com/solidity-tutorial-all-about-assembly-5acdfefde05c
 - [2] https://docs.soliditylang.org/en/latest/yul.html
