@@ -123,6 +123,71 @@ assembly {
 // ^
 ```
 
+#### Accessing variables in Solidity Assembly:
+
+The variables must be local to the function
+
+```solidity
+function assembly_local_var_access() public pure {
+    uint b = 5;
+    assembly {                // defined inside  an assembly block
+        let x := add(2, 3)  
+        let y := 10  
+        z := add(x, y)
+    }
+    assembly {               // defined outside an assembly block
+        let x := add(2, 3)
+        let y := mul(x, b)
+    }
+}
+```
+
+#### For loop....
+
+In Solidity:
+
+```solidity
+function for_loop_solidity(uint n, uint value) public pure returns(uint) {
+         
+    for ( uint i = 0; i < n; i++ ) {
+        value = 2 * value;
+    }
+    return value;
+}
+```
+
+In Assembly:
+
+```solidity
+function for_loop_assembly(uint n, uint value) public pure returns (uint) {
+         
+     assembly {
+             
+       for { let i := 0 } lt(i, n) { i := add(i, 1) } { 
+           value := mul(2, value) 
+       }
+           
+       mstore(0x0, value)
+       return(0x0, 32)
+           
+   }
+         
+}
+```
+
+#### ...but, there is no while loop:
+
+```solidity
+assembly {
+    let x := 0
+    let i := 0
+    for { } lt(i, 0x100) { } {   // while(i < 256), 100 (hex) = 256
+        x := add(x, mload(i))
+        i := add(i, 0x20)
+    }
+}
+```
+
 ### References:
 - [1] https://jeancvllr.medium.com/solidity-tutorial-all-about-assembly-5acdfefde05c
 - [2] https://docs.soliditylang.org/en/latest/yul.html
