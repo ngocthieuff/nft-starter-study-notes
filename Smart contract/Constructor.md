@@ -3,6 +3,9 @@
 <img src="/assets/images/smart_contract/constructor.jpg" />
 
 #### :sparkles: Abstract contract - internal constructor:
+
+!!! Note: This contract may be abstract, it may not implement an abstract parent's methods completely or it may not invoke an inherited contract's constructor correctly.
+
 ```solidity 
 // Solidity program to demonstrate
 // creating a constructor
