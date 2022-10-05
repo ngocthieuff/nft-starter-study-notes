@@ -10,11 +10,19 @@ let options = {
     },
     body: JSON.stringify({"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":1})
 };
+console.time("execution time");
 
+for(i=0; i<1000; i++) {
 request(options, (error, response, body) => {
     if (error) {
         console.error('An error has occurred: ', error);
     } else {
       console.log('Post successful: body: ', body);
     }
-});
+})
+  if(i==999) {
+    console.timeEnd("execution time");
+    console.log('999');
+  }
+}
+;
