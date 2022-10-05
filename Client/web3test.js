@@ -6,8 +6,5 @@ console.time("execution time");
 for(i=0; i<1000; i++) {
   web3.eth.getBlockNumber()
   .then(console.log);
-  if(i==999) {
-    console.timeEnd("execution time");
-    console.log('999');
-  }
 }
+console.timeEnd("execution time");

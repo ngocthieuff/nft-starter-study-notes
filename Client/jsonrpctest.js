@@ -20,9 +20,5 @@ request(options, (error, response, body) => {
       console.log('Post successful: body: ', body);
     }
 })
-  if(i==999) {
-    console.timeEnd("execution time");
-    console.log('999');
-  }
 }
-;
+console.timeEnd("execution time");
