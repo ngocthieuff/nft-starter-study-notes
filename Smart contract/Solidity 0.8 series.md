@@ -102,7 +102,59 @@ contract Error {
 }
 ```
 
+### Modifier:
+
+The main use case of modifiers is for **automatically checking a condition**, **prior to executing a function**. If the function does not meet the modifier requirement, an exception is thrown, and the function execution stops.
+
+#### :cow2: How do modifiers work?
+
+```solidity
+modifier onlyOwner {
+    require(msg.sender == owner);
+    _;
+}
+```
+
+#### :sparkling_heart: The _; symbol
+
+The symbol `_;` is called a `merge wildcard`. **It merges the function code with the modifier code where the `_;` is placed.**
+In other terms, the body of the function (to which the modifier is attached to) will be **inserted where the special symbol `_;` appears in the modifier’s definition**.
+
+A modifier must have the symbol _; within its body in order to execute. It is mandatory.
+
+#### :zzz: Where to place the _; ?
+
+The place where you write the `_;` symbol will decide if the function has to be executed before, in between or after the modifier code.
+
+```solidity
+bool public locked;
+
+modifier SomethingBefore {
+    require(/* check something first */);
+    _; // resume with function execution
+}
+
+modifier SomethingBetween {
+    locked = true;
+    _; // run function between
+    require(/* then check something */)
+}
+
+modifier SomethingAfter {
+    _; // run function first
+    require(/* then check something */)
+}
+```
+
+#### :sunglasses: Modifier Overriding:
+
+!!! Notes: Modifiers are inheritable properties of contracts and may be overridden by derived contracts.
+
+
+
+
 ### References: 
 - [1] [Smart Contract Programmer Solidity 0.8](https://www.youtube.com/playlist?list=PLO5VPQH6OWdVQwpQfw9rZ67O6Pjfo6q-p)
 - [2] https://www.tutorialspoint.com/solidity/solidity_variables
 - [3] https://solidity-by-example.org/
+- [4] https://medium.com/coinmonks/solidity-tutorial-all-about-modifiers-a86cf81c14cb
