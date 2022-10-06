@@ -252,10 +252,56 @@ contract Function {
   }
 }
 ```
+### Data Location:
 
+- `storage` - The location type where the state variables are stored on blockchain which means types that has `storage` location are persistent.
+- `memory` - Variables are in `memory` and they exists during the function call which means variables that got this location are temporary and after function execution finished, they won’t exist.
+- `calldata` - Non-modifiable, non-persistent data location where function arguments are stored, behaves mostly like `memory` data location and only available for `external` functions.
+  
+```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.13;
+
+contract DataLocations {
+    uint[] public arr;
+    mapping(uint => address) map;
+    struct MyStruct {
+        uint foo;
+    }
+    mapping(uint => MyStruct) myStructs;
+
+    function f() public {
+        // call _f with state variables
+        _f(arr, map, myStructs[1]);
+
+        // get a struct from a mapping
+        MyStruct storage myStruct = myStructs[1];
+        // create a struct in memory
+        MyStruct memory myMemStruct = MyStruct(0);
+    }
+
+    function _f(
+        uint[] storage _arr,
+        mapping(uint => address) storage _map,
+        MyStruct storage _myStruct
+    ) internal {
+        // do something with storage variables
+    }
+
+    // You can return memory variables
+    function g(uint[] memory _arr) public returns (uint[] memory) {
+        // do something with memory array
+    }
+
+    function h(uint[] calldata _arr) external {
+        // do something with calldata array
+    }
+}
+```
 
 ### References: 
 - [1] [Smart Contract Programmer Solidity 0.8](https://www.youtube.com/playlist?list=PLO5VPQH6OWdVQwpQfw9rZ67O6Pjfo6q-p)
 - [2] https://www.tutorialspoint.com/solidity/solidity_variables
 - [3] https://solidity-by-example.org/
 - [4] https://medium.com/coinmonks/solidity-tutorial-all-about-modifiers-a86cf81c14cb
+- [5] https://medium.com/coinmonks/solidity-fundamentals-a71bf54c0b98
