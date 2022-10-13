@@ -102,6 +102,31 @@ The purpose of Turbo modules is the same as `native modules` in the current arch
 - JavaScript is a dynamic typed language, and JSI is written in C++, which is a statically typed language.
 - That's why new architecture will include a static type checker called CodeGen, ensure smooth communication between the two.
 
+### :electric_plug: The flow of new architecture:
+
+1. The user clicks on the app icon.
+2. Fabric directly loads the native side (no native modules).
+3. JS side loads all the `main.bundle.js` which contains all js and react logic and components.
+4. JS called through the ref native function to Fabric and the shadow node creates the tree as before.
+5. Yoga does the layout calculation converting from flexbox-based style to host layout.
+6. Fabric does its thing and shows the UI.
+
+### :money_with_wings: Conclusion: 
+
+- Bridge will be replaced by JSI
+
+- Ability to swap the JavaScriptCore with other Engines
+
+- Complete Interoperability between all threads
+
+- Web-like Rendering system
+
+- Time sensitive tasks can be executed synchronously
+
+- Lazy Loading of Turbo Modules
+
+- Static Type Checking for compatibility between JS and Native Side
+  
 ### References:
 
 - [1] https://medium.com/coox-tech/deep-dive-into-react-natives-new-architecture-fb67ae615ccd
