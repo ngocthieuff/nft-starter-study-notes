@@ -97,7 +97,10 @@ The purpose of Turbo modules is the same as `native modules` in the current arch
 - At first, they are **lazy-loaded** which means it only loads when the app needs them instead of loading all of them on the launch time. 
 - In addition, they are also exposed using the JSI so JS holds a ref to use them on the React Native JS lib side which results in better performance, especially on the launch time.
 
+### CodeGen:
 
+- JavaScript is a dynamic typed language, and JSI is written in C++, which is a statically typed language.
+- That's why new architecture will include a static type checker called CodeGen, ensure smooth communication between the two.
 
 ### References:
 
